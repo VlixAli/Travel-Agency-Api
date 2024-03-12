@@ -13,6 +13,7 @@ class TravelObserver
     public function creating(Travel $travel): void
     {
         $travel->id = Str::uuid();
+        $travel->slug = Str::slug($travel->name);
     }
 
     /**
