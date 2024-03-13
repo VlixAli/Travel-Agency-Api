@@ -3,6 +3,10 @@
 use App\Http\Controllers\TravelController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/travels', [TravelController::class, 'index']);
-Route::post('travels/store', [TravelController::class, 'store'])->middleware(['auth:sanctum','isAdmin']);
-Route::put('travels/{travel:slug}', [TravelController::class, 'update'])->middleware(['auth:sanctum','isEditor']);
+Route::controller(TravelController::class)->group(function () {
+    Route::get('/', 'index');
+    Route::middleware('auth:sanctum')->group(function () {
+        Route::post('/store', 'store')->middleware('isAdmin');
+        Route::put('/{travel:slug}', 'update')->middleware('isEditor');
+    });
+});
