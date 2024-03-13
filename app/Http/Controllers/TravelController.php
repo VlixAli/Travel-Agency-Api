@@ -43,19 +43,12 @@ class TravelController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Travel $travel)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      */
     public function update(UpdateTravelRequest $request, Travel $travel)
     {
-        //
+        $travel->update($request->validated());
+        return new TravelResource($travel);
     }
 
     /**
