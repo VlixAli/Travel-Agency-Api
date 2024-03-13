@@ -3,19 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Http\Resources\TourResource;
+use App\Models\Role;
 use App\Models\Tour;
 use App\Http\Requests\StoreTourRequest;
 use App\Http\Requests\UpdateTourRequest;
 use App\Models\Travel;
+use Illuminate\Database\Query\Builder;
+use Illuminate\Http\Request;
 
 class TourController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(Travel $travel)
+    public function index(Request $request,Travel $travel)
     {
-        $tours = Tour::where('travel_id', $travel->id)->paginate();
+        $tours = Tour::where('travel_id', $travel->id)
+            ->filter($request->query())
+            ->paginate()->withQueryString();
         return TourResource::collection($tours);
     }
 
