@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\TravelObserver;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -16,6 +17,11 @@ class Travel extends Model
     protected $fillable = [
       'id', 'is_public', 'name', 'slug', 'description', 'number_of_days'
     ];
+
+    public static function booted()
+    {
+        static::observe(TravelObserver::class);
+    }
 
     public function tours()
     {
