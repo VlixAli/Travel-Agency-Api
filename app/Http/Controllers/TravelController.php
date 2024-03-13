@@ -18,20 +18,20 @@ class TravelController extends Controller
         return TravelResource::collection($travels);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(StoreTravelRequest $request)
     {
-        //
+        $travel = Travel::create([
+            'is_public' => $request->is_public,
+            'name' => $request->name,
+            'description' => $request->description,
+            'number_of_days' => $request->number_of_days,
+        ]);
+
+        return new TravelResource($travel);
     }
 
     /**
