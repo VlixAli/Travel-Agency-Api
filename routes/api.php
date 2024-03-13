@@ -23,8 +23,7 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/admin/user', 'store')->middleware(['auth:sanctum', 'isAdmin']);
 });
 
-Route::post('/login', [UserController::class, 'login']);
-
-include 'travel-api.php';
-include 'tour-api.php';
-include 'admin-api.php';
+Route::prefix('travels')->group(function () {
+    include 'travel-api.php';
+    include 'tour-api.php';
+});
