@@ -19,3 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 include 'travel-api.php';
+include 'tour-api.php';
