@@ -11,6 +11,8 @@ class Travel extends Model
 
     public $incrementing = false;
 
+    protected $table = 'travels';
+
     protected $fillable = [
       'id', 'is_public', 'name', 'slug', 'description', 'number_of_days'
     ];
