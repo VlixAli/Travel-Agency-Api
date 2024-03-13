@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Observers\TourObserver;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,6 +17,11 @@ class Tour extends Model
     protected $fillable = [
         'id', 'travel_id', 'name', 'starting_date', 'ending_date', 'price'
     ];
+
+    public static function booted()
+    {
+        static::observe(TourObserver::class);
+    }
 
     public function scopeFilter(Builder $query, $filters)
     {
