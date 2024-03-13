@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,8 +14,23 @@ class Tour extends Model
     public $incrementing = false;
 
     protected $fillable = [
-      'id', 'travel_id', 'name', 'starting_date', 'ending_date', 'price'
+        'id', 'travel_id', 'name', 'starting_date', 'ending_date', 'price'
     ];
+
+    public function scopeFilter(Builder $query, $filters)
+    {
+        $options = array_merge([
+            'priceFrom' => null,
+            'priceTo' => null,
+            'dateFrom' => null,
+            'dateTo' => null,
+        ], $filters);
+
+        $query->when($options['priceFrom'], fn($query, $value) => $query->where('price', '>=', $value * 100));
+        $query->when($options['priceTo'], fn($query, $value) => $query->where('price', '<=', $value * 100));
+        $query->when($options['dateFrom'], fn($query, $value) => $query->where('starting_date', '>=', $value));
+        $query->when($options['dateTo'], fn($query, $value) => $query->whereDate('starting_date', '<=', $value));
+    }
 
     public function travel()
     {
@@ -22,7 +39,7 @@ class Tour extends Model
 
     public function setPriceAttribute($value)
     {
-         $this->attributes['price'] = $value * 100;
+        $this->attributes['price'] = $value * 100;
     }
 
     public function getPriceAttribute($value)
