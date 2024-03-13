@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Travel>
@@ -17,10 +18,12 @@ class TravelFactory extends Factory
     public function definition(): array
     {
         return [
-            'is_public' => $this->faker->boolean,
-            'name' => $this->faker->name,
+            'id' => Str::uuid(),
+            'is_public' => $this->faker->boolean(),
+            'name' => $this->faker->name(),
+            'slug' => $this->faker->slug(),
             'description' => $this->faker->paragraph(6),
-            'number_of_days' => $this->faker->numberBetween(3, 9),
+            'number_of_days' => rand(3,9),
         ];
     }
 }
