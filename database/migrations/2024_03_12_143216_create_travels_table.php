@@ -16,7 +16,7 @@ return new class extends Migration
             $table->boolean('is_public');
             $table->string('name')->unique();
             $table->string('slug')->unique();
-            $table->string('description')->nullable();
+            $table->text('description')->nullable();
             $table->unsignedInteger('number_of_days');
             $table->timestamps();
         });
@@ -27,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('travel');
+        Schema::dropIfExists('travels');
     }
 };
