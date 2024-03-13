@@ -24,12 +24,14 @@ class Tour extends Model
             'priceTo' => null,
             'dateFrom' => null,
             'dateTo' => null,
+            'orderBy' => null
         ], $filters);
 
         $query->when($options['priceFrom'], fn($query, $value) => $query->where('price', '>=', $value * 100));
         $query->when($options['priceTo'], fn($query, $value) => $query->where('price', '<=', $value * 100));
         $query->when($options['dateFrom'], fn($query, $value) => $query->where('starting_date', '>=', $value));
         $query->when($options['dateTo'], fn($query, $value) => $query->whereDate('starting_date', '<=', $value));
+        $query->when($options['orderBy'], fn($query, $value) => $query->orderBy('price', $value));
     }
 
     public function travel()
