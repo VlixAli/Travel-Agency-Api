@@ -20,6 +20,7 @@ class TourController extends Controller
     {
         $tours = Tour::where('travel_id', $travel->id)
             ->filter($request->query())
+            ->orderBy('starting_date')
             ->paginate()->withQueryString();
         return TourResource::collection($tours);
     }
