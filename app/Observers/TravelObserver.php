@@ -17,11 +17,11 @@ class TravelObserver
     }
 
     /**
-     * Handle the Travel "updated" event.
+     * Handle the Travel "updating" event.
      */
-    public function updated(Travel $travel): void
+    public function updating(Travel $travel): void
     {
-        //
+        $travel->slug = Str::slug($travel->name);
     }
 
     /**
