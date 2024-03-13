@@ -3,6 +3,8 @@
 use App\Http\Controllers\TourController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/travels/{travel:slug}/tours', [TourController::class, 'index']);
-Route::post('/travels/{travel:slug}/tours', [TourController::class, 'store'])
-    ->middleware(['auth:sanctum', 'isAdmin']);
+Route::controller(TourController::class)->prefix('/{travel:slug}/tours')
+    ->group(function () {
+        Route::get('/', 'index');
+        Route::post('/', 'store')->middleware(['auth:sanctum', 'isAdmin']);
+    });
