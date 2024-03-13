@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Travel;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Tour>
@@ -18,7 +19,8 @@ class TourFactory extends Factory
     public function definition(): array
     {
         return [
-            'travel_id' => Travel::all()->random(),
+            'id' => Str::uuid(),
+            'travel_id' => Travel::all()->random()->id,
             'name' => $this->faker->name,
             'starting_date' => $this->faker->date,
             'ending_date' => $this->faker->date,
