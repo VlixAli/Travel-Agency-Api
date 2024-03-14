@@ -28,7 +28,13 @@
 ## 🧐Features <a name = "features"></a>
 
 ---
-- 
+- private admin endpoint to create users
+- private admin endpoint to create new travels
+- private admin endpoint to create new tours for a travel
+- private editor endpoint to update a travel
+- public (no auth) endpoint to get a list of paginated public travels
+- A public (no auth) endpoint to get a list of paginated tours by the travel slug. users can filter (search) the results by priceFrom, priceTo, dateFrom (from that startingDate) and dateTo (until that startingDate). User can sort the list by price asc and desc. They will always be sorted, after every additional user-provided filter, by startingDate asc.
+
 
 ## 🔧Requirements <a name = "requirements"></a>
 
@@ -45,7 +51,7 @@
 First clone this repository, install the dependencies, and setup your .env file.
 
 ```
-git clone https://github.com/VlixAli/Mutli-vendor-E-Commerce-using-laravel.git
+git clone https://github.com/VlixAli/Travel-Agency-Api.git
 composer install
 cp .env.example .env
 ```
@@ -53,7 +59,7 @@ add your Database credentials to your .env file and run this command to generate
 
 ```
 php artisan key:generate
-php artisan migrate
+php artisan migrate --seed
 ```
 
 run the project using the following command
@@ -63,21 +69,22 @@ php artisan serve
 
 
 ### Admin credentials
+- Email = test@example.com
+- password = password
 
 ## ✍️ Api documentation <a name = "api"></a>
 
 ---
-For how to use the products api and create access token view this link
+For how to use the travel agency api and create access token view this link
 [Travel Agency Api Documentation](https://documenter.getpostman.com/view/23171948/2sA2xk2Bpt)
 
 ## 🎈 concepts and patterns used <a name = "concepts"></a>
 
----
-### Laravel concepts :
 
-### Design Patterns used :
+
 
 ## 🎉 Acknowledgements <a name = "acknowledgements"></a>
 
 ---
-
+this project was created based on the LaravelDaily [Mentorship api](https://laraveldaily.com/lesson/travel-api/client-specification-into-plan-of-action)
+but with my own style . It's a real life interview task according to LaravelDaily
