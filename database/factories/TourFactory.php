@@ -19,11 +19,10 @@ class TourFactory extends Factory
     public function definition(): array
     {
         return [
-            'id' => Str::uuid(),
             'travel_id' => Travel::all()->random()->id,
             'name' => $this->faker->name,
-            'starting_date' => $this->faker->date,
-            'ending_date' => $this->faker->date,
+            'starting_date' => $this->faker->dateTime,
+            'ending_date' => $this->faker->dateTime,
             'price' => $this->faker->numberBetween(100, 1000),
         ];
     }
