@@ -80,6 +80,16 @@ For how to use the travel agency api and create access token view this link
 
 ## 🎈 concepts and patterns used <a name = "concepts"></a>
 
+### laravel concepts: 
+- Observers to autogenerate slug and uuid
+- Requests to add validation rules to input
+- resources to control the output
+- middleware to check if the user is admin or editor
+- sanctum authentication
+- factories, migrations and database seeders
+- scopes for search and filtering
+- eloquent many-to-many relationship
+- eloquent one-to-many relationship
 
 
 
