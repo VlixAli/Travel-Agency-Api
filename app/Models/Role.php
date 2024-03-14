@@ -10,6 +10,8 @@ class Role extends Model
 {
     use HasFactory;
 
+    public $incrementing = false;
+
     public static function booted()
     {
         static::observe(RoleObserver::class);
