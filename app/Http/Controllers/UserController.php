@@ -22,8 +22,8 @@ class UserController extends Controller
         ]);
 
         if ($request->validated('role')) {
-            $role = Role::where('name', $request->role);
-            $user->attach($role);
+            $role = Role::where('name', $request->role)->first();
+            $user->roles()->attach($role->id);
         }
 
         return new UserResource($user);
