@@ -81,7 +81,7 @@ For how to use the travel agency api and create access token view this link
 ## 🎈 concepts and patterns used <a name = "concepts"></a>
 
 ### laravel concepts: 
-- Observers to autogenerate slug and uuid
+-  ~~Observers to autogenerate slug and uuid~~ : replaced with eloquent/sluggable package and HasUuids trait
 - Requests to add validation rules to input
 - resources to control the output
 - middleware to check if the user is admin or editor
