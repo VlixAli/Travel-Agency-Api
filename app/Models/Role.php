@@ -2,20 +2,15 @@
 
 namespace App\Models;
 
-use App\Observers\RoleObserver;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    use HasFactory;
+    use HasFactory, HasUuids;
 
-    public $incrementing = false;
-
-    public static function booted()
-    {
-        static::observe(RoleObserver::class);
-    }
+    protected $fillable = ['name'];
 
     public function users()
     {
