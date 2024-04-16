@@ -3,19 +3,20 @@
 namespace App\Models;
 
 use App\Observers\TravelObserver;
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Travel extends Model
 {
-    use HasFactory;
+    use HasFactory, Sluggable;
 
     public $incrementing = false;
 
     protected $table = 'travels';
 
     protected $fillable = [
-      'id', 'is_public', 'name', 'slug', 'description', 'number_of_days'
+        'is_public', 'name', 'slug', 'description', 'number_of_days'
     ];
 
     public static function booted()
@@ -30,6 +31,15 @@ class Travel extends Model
 
     public function getNumberOfNightsAttribute()
     {
-        return $this->number_of_days - 1 ;
+        return $this->number_of_days - 1;
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
 }
