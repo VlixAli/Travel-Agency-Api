@@ -23,7 +23,7 @@ class TourFactory extends Factory
             'name' => $this->faker->name,
             'starting_date' => $this->faker->dateTime,
             'ending_date' => $this->faker->dateTime,
-            'price' => $this->faker->numberBetween(100, 1000),
+            'price' => $this->faker->randomFloat(2, 10, 999),
         ];
     }
 }
