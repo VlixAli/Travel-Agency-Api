@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ToursFilterRequest;
 use App\Http\Resources\TourResource;
 use App\Models\Role;
 use App\Models\Tour;
@@ -17,7 +18,7 @@ class TourController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request, Travel $travel)
+    public function index(ToursFilterRequest $request, Travel $travel)
     {
         $tours = Tour::where('travel_id', $travel->id)
             ->filter($request->query())
