@@ -25,7 +25,7 @@ class StoreTravelRequest extends FormRequest
             'is_public' => 'required|boolean',
             'name' => 'required|string|max:255',
             'description' => 'nullable',
-            'number_of_days' => 'required|numeric'
+            'number_of_days' => 'required|numeric',
         ];
     }
 }

@@ -6,7 +6,6 @@ use App\Models\Role;
 
 trait GenerateRoles
 {
-
     private function generateRoles(): void
     {
         Role::factory()->create(['name' => 'admin']);

@@ -13,9 +13,8 @@ class Tour extends Model
     use HasFactory, HasUuids;
 
     protected $fillable = [
-        'travel_id', 'name', 'starting_date', 'ending_date', 'price'
+        'travel_id', 'name', 'starting_date', 'ending_date', 'price',
     ];
-
 
     public function scopeFilter(Builder $query, $filters)
     {
@@ -24,14 +23,14 @@ class Tour extends Model
             'priceTo' => null,
             'dateFrom' => null,
             'dateTo' => null,
-            'orderBy' => null
+            'orderBy' => null,
         ], $filters);
 
-        $query->when($options['priceFrom'], fn($query, $value) => $query->where('price', '>=', $value * 100));
-        $query->when($options['priceTo'], fn($query, $value) => $query->where('price', '<=', $value * 100));
-        $query->when($options['dateFrom'], fn($query, $value) => $query->where('starting_date', '>=', $value));
-        $query->when($options['dateTo'], fn($query, $value) => $query->whereDate('starting_date', '<=', $value));
-        $query->when($options['orderBy'], fn($query, $value) => $query->orderBy('price', $value));
+        $query->when($options['priceFrom'], fn ($query, $value) => $query->where('price', '>=', $value * 100));
+        $query->when($options['priceTo'], fn ($query, $value) => $query->where('price', '<=', $value * 100));
+        $query->when($options['dateFrom'], fn ($query, $value) => $query->where('starting_date', '>=', $value));
+        $query->when($options['dateTo'], fn ($query, $value) => $query->whereDate('starting_date', '<=', $value));
+        $query->when($options['orderBy'], fn ($query, $value) => $query->orderBy('price', $value));
     }
 
     public function travel()
@@ -39,21 +38,21 @@ class Tour extends Model
         return $this->belongsTo(Travel::class, 'travel_id', 'id');
     }
 
-//    public function setPriceAttribute($value)
-//    {
-//        $this->attributes['price'] = $value * 100;
-//    }
-//
-//    public function getPriceAttribute($value)
-//    {
-//        return $value / 100;
-//    }
+    //    public function setPriceAttribute($value)
+    //    {
+    //        $this->attributes['price'] = $value * 100;
+    //    }
+    //
+    //    public function getPriceAttribute($value)
+    //    {
+    //        return $value / 100;
+    //    }
 
     public function price(): Attribute
     {
         return Attribute::make(
-            get: fn($value) => $value / 100,
-            set: fn($value) => $value * 100
+            get: fn ($value) => $value / 100,
+            set: fn ($value) => $value * 100
         );
     }
 }

@@ -16,7 +16,7 @@ class LoginTest extends TestCase
 
         $response = $this->postJson('/api/login', [
             'email' => $user->email,
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $response->assertStatus(201);
@@ -25,9 +25,9 @@ class LoginTest extends TestCase
 
     public function test_login_returns_error_with_invalid_credentials(): void
     {
-        $response =  $this->postJson('/api/login', [
+        $response = $this->postJson('/api/login', [
             'email' => 'nonexisting@user.com',
-            'password' => 'password'
+            'password' => 'password',
         ]);
 
         $response->assertStatus(401);

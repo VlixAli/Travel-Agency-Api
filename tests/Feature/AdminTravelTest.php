@@ -10,7 +10,7 @@ use Tests\TestCase;
 
 class AdminTravelTest extends TestCase
 {
-    use RefreshDatabase, GenerateRoles;
+    use GenerateRoles, RefreshDatabase;
 
     public function test_public_user_cannot_access_adding_travel(): void
     {
@@ -36,16 +36,16 @@ class AdminTravelTest extends TestCase
         $user->roles()->attach(Role::where('name', 'admin')->value('id'));
 
         $response = $this->actingAs($user)->postJson('/api/travels/store', [
-            'name' => 'Travel name'
+            'name' => 'Travel name',
         ]);
 
         $response->assertStatus(422);
 
         $response = $this->actingAs($user)->postJson('/api/travels/store', [
-           'name' => 'Travel name',
-           'is_public' => 1,
-           'description' => 'Some description',
-            'number_of_days' => 5
+            'name' => 'Travel name',
+            'is_public' => 1,
+            'description' => 'Some description',
+            'number_of_days' => 5,
         ]);
 
         $response->assertStatus(201);

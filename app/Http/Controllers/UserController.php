@@ -7,7 +7,6 @@ use App\Http\Requests\StoreUserRequest;
 use App\Http\Resources\UserResource;
 use App\Models\Role;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Response;
 
@@ -32,7 +31,7 @@ class UserController extends Controller
     public function login(LoginUserRequest $request)
     {
         $user = User::where('email', $request->email)->first();
-        if (!($user && Hash::check($request->password, $user->password))) {
+        if (! ($user && Hash::check($request->password, $user->password))) {
             return Response::json([
                 'code' => 0,
                 'message' => 'Invalid credentials',

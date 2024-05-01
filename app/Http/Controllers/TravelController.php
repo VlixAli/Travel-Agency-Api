@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\TravelResource;
-use App\Models\Travel;
 use App\Http\Requests\StoreTravelRequest;
 use App\Http\Requests\UpdateTravelRequest;
+use App\Http\Resources\TravelResource;
+use App\Models\Travel;
 
 class TravelController extends Controller
 {
@@ -15,9 +15,9 @@ class TravelController extends Controller
     public function index()
     {
         $travels = Travel::where('is_public', true)->paginate();
+
         return TravelResource::collection($travels);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -43,6 +43,7 @@ class TravelController extends Controller
     public function update(UpdateTravelRequest $request, Travel $travel)
     {
         $travel->update($request->validated());
+
         return new TravelResource($travel);
     }
 

@@ -15,11 +15,12 @@ class isEditor
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if(!$request->user()->hasRole('editor') && !$request->user()->hasRole('admin')){
+        if (! $request->user()->hasRole('editor') && ! $request->user()->hasRole('admin')) {
             return response()->json([
-                'message' => 'unauthorized action'
+                'message' => 'unauthorized action',
             ], 403);
         }
+
         return $next($request);
     }
 }

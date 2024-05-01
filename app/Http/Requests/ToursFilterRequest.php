@@ -33,7 +33,7 @@ class ToursFilterRequest extends FormRequest
     public function messages()
     {
         return [
-            'orderBy' => 'OrderBy accepts only (asc) or (desc) values'
+            'orderBy' => 'OrderBy accepts only (asc) or (desc) values',
         ];
     }
 }
