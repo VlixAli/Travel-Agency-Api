@@ -24,12 +24,7 @@ class TravelController extends Controller
      */
     public function store(StoreTravelRequest $request)
     {
-        $travel = Travel::create([
-            'is_public' => $request->is_public,
-            'name' => $request->name,
-            'description' => $request->description,
-            'number_of_days' => $request->number_of_days,
-        ]);
+        $travel = Travel::create($request->validated());
 
         return new TravelResource($travel);
     }
