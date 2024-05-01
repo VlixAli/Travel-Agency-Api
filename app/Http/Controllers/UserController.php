@@ -42,7 +42,7 @@ class UserController extends Controller
 
         return Response::json([
             'code' => 1,
-            'token' => $token->plainTextToken,
+            'access_token' => $token->plainTextToken,
             'user' => $user,
         ], 201);
     }
